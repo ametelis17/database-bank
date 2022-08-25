@@ -1,0 +1,62 @@
+/*Database Banca */
+
+create table clienti(
+  client_id int primary key,
+  client_nume varchar NOT NULL,
+  client_prenume varchar not null
+  );
+  
+  create table sucursale(
+  sucursala_id int primary key,
+  sucursala_nume varchar NOT NULL
+  );
+  
+  create table tipoperatiune(
+  operatiune_id int primary key,
+  tip_operatiune varchar not null
+  );
+  
+  
+  create table operatiuni(
+  data_ora datetime,
+  suma_operatiuni varchar,
+  operatiune_id int,
+  client_id int,
+  sucursala_id int,
+  foreign key (operatiune_id) references tipoperatiune(operatiune_id),
+  foreign key (client_id) references clienti(client_id),
+  foreign key (sucursala_id) references sucursale(sucursala_id)
+  );
+  
+  CREATE UNIQUE INDEX index_clienti
+  ON clienti (client_nume,client_prenume);
+  
+  CREATE UNIQUE INDEX index_tipoperatiune
+ON tipoperatiune(tip_operatiune);
+
+CREATE UNIQUE INDEX index_sucursala
+ON sucursale (sucursala_nume);
+  
+INSERT INTO clienti
+(client_id,client_nume,client_prenume)
+values
+('1', 'John', 'Matthew'),
+('2', 'Monica', 'Grull');
+
+select * from clienti where client_nume = 'John';
+
+INSERT INTO sucursale
+(sucursala_id, sucursala_nume)
+values
+('145', 'BT'),
+('234', 'BCR');
+
+select * from sucursale;
+
+INSERT INTO tipoperatiune
+(operatiune_id, tipoperatiune)
+values
+('145', 'BT'),
+('234', 'BCR');
+
+select * from sucursale;
